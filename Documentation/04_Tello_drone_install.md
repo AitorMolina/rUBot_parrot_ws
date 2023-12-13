@@ -9,6 +9,9 @@ These modifications are:
 - sudo apt install python3-pip
 - sudo -H pip3 install -e .
 - open file tello_driver_node.py and change to python3
+- python3 -m pip install opencv-python
+- rosdep update
+- rosdep install --from-paths src -i
 - catkin_make
 
 # **Tello drone device registering**
