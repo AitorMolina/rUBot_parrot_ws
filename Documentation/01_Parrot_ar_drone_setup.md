@@ -25,32 +25,25 @@ cd ~/rUBot_parrot_ws/src
 git clone --branch noetic https://bitbucket.org/theconstructcore/parrot_ardrone.git
 git clone https://bitbucket.org/theconstructcore/spawn_robot_tools.git
 ```
-A simpler version adapted to ROS-Noetic is:
-- https://github.com/tahsinkose/sjtu-drone
-
-We have cloned this one and changed the workspace name to "rUBot_ardrone_ws"
 
 **- Installing ignition-math, used by sjtu_drone**
 
 We will need to install the Ignition Math library, which is used by the sjtu_drone found on the parrot_ardrone repository we cloned previously.
 ```shell
 sudo apt update
-sudo apt upgrade
 sudo apt install wget
-sudo apt update
-sudo apt upgrade
 sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
 wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install libignition-math4-dev -y
 ```
-> The same has to be done if you use the simpler "rUBot_ardrone_ws"
+> The same has to be done if you use the simpler "rUBot_parrot_ws"
 
 **- Compilation**
 
 It may happen that when compiling the package, catkin_make can’t find the ignition library, so we need to export the CXXFLAGS accordingly. In my local computer, the ignition library is found at /usr/include/ignition/math4, so to compile we use the following commands:
 ```shell
-cd /home/rUBot_ardrone_ws
+cd /home/rUBot_parrot_ws
 export CXXFLAGS=-isystem\ /usr/include/ignition/math4
 source /opt/ros/noetic/setup.bash
 catkin_make
@@ -60,7 +53,7 @@ catkin_make
 The recomended procedure is to clone the "rUBot_ardrone_ws" repository from my github:
 ```shell
 cd /home
-git clone https://github.com/manelpuig/rUBot_ardrone_ws
+git clone https://github.com/manelpuig/rUBot_parrot_ws
 cd /home/ubuntu/rUBot_ardrone_ws/
 catkin_make
 ```
