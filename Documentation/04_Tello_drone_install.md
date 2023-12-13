@@ -5,13 +5,22 @@ https://github.com/anqixu/tello_driver/tree/master
 Some modifications are explained in:
 https://www.youtube.com/watch?v=uMiXP_AwhmM
 
-These modifications are:
-- sudo apt install python3-pip
-- sudo -H pip3 install -e .
-- open file tello_driver_node.py and change to python3
-- pip3 install av
-
-- catkin_make
+The detailed install instructions are:
+```shell
+cd rUBot_parrot_ws
+git clone https://github.com/anqixu/TelloPy.git
+cd TelloPy
+sudo apt install python3-pip
+sudo -H pip3 install -e .
+cd ..
+git clone https://github.com/anqixu/h264_image_transport.git
+git clone https://github.com/anqixu/tello_driver.git
+cd ..
+rosdep install h264_image_transport
+pip3 install av
+catkin_make
+```
+ You will only need to open file "tello_driver_node.py" and change to python3 on the first line
 
 # **Tello drone device registering**
 

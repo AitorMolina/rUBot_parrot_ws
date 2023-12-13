@@ -67,8 +67,9 @@ rostopic pub /drone/land std_msgs/Empty "{}"
 ```
 To control the Parrot type:
 ```shell
+sudo apt install ros-noetic-teleop-twist-keyboard
 rostopic pub /drone/takeoff std_msgs/Empty "{}"
-rosrun custom_teleop teleop_twist_keyboard.py
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 rostopic pub /drone/land std_msgs/Empty "{}"
 ```
 To properly close the gazebo, open a new terminal and type:
@@ -76,3 +77,52 @@ To properly close the gazebo, open a new terminal and type:
 pkill gzserver && pkill gzclient
 ```
 This will close efficiently all the services and modules needed for gazebo simulation
+
+In the case of "ar_drone" you have a usefull "drone_keyboard"
+```shell
+rosrun ar_drone drone_keyboard
+```
+Click on the keyboard image and use the keys for movements
+## **2. Parrot AR-Drone HW installation**
+
+For HW installation follow instructions in:
+- http://edu.gaitech.hk/drones/ar_parrot_2/ar-parrot-2-ros.html
+- https://ardrone-autonomy.readthedocs.io/en/latest/installation.html
+- https://github.com/AutonomyLab/ardrone_autonomy
+
+Important updates:
+- https://github.com/dsapandora/ardrone_autonomy
+- https://www.espaciodrone.com/todos-los-firmware-del-ar-drone-1-y-2/
+- https://github.com/tahsinkose/sjtu-drone
+
+In our Parrot AR Drone:
+AR Drone 2.0 is still **compatible with ROS Noetic** (https://answers.ros.org/question/362757/what-drone-is-compatible-with-ros-noetic/)
+
+Just Downgrade the firmware to 2.4.1 (i use this one) from
+
+https://www.espaciodrone.com/todos-lo...
+
+- Power up your AR.Drone
+- Connect your computer to the AR.Drone’s network
+- Open a telnet session to 192.168.1.1
+- type the following: echo "1.1.1" > /firmware/version.txt
+- press enter
+- type the following: echo "2.4.1" > /update/version.txt
+- Connect an FTP client to 192.168.1.1 Port: 5551 (i use nautilius ctrl + l then ftp://192.168.1.1:551)
+- Upload the downloaded plf file to the FTP server (AR.Drone)
+- Disconnect your computer from the AR.Drone
+- Disconnect the battery from the AR.Drone
+- Reconnect the battery
+- Wait about 5 minutes while the upgrade completes, leave your drone switched on
+
+For source installation type in a terminal:
+```shell
+cd ~/rUBot_parrot_ws/src
+git clone https://github.com/dsapandora/ardrone_autonomy
+cd ~/rUBot_parrot_ws
+rosdep install --from-paths src -i
+catkin_make
+```
+> Before compiling, in CMakeLists.txt file change git://github.com/dsapandora/ardronelib.git to https://github.com/dsapandora/ardronelib.git
+
+It works like a charm...
