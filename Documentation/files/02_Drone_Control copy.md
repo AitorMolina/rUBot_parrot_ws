@@ -5,10 +5,10 @@ https://www.theconstructsim.com/how-to-launch-drone-simulation-locally/
 
 ## **1. Drone bringup**
 
-Let’s bringup the Parrot Drone
+Let’s bringup the Parrot AR-Drone
 
 ```shell
-roslaunch drone_construct main.launch
+roslaunch ar_drone simple.launch
 ```
 
 Let's see the topics:
