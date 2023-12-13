@@ -1,4 +1,4 @@
-# Parrot ar drone setup
+# Parrot drone setup
 
 Speciffic course for 3D mapping and locallisation:
 https://www.udemy.com/course/implementation-of-slam-on-a-drone-using-ros-and-gazebo/learn/lecture/22619028#overview
